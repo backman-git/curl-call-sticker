@@ -1,0 +1,88 @@
+{
+  "name": "curl-call-sticker",
+  "displayName": "curl-call-sticker",
+  "description": "A curl sticker note",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "curl-call-sticker.createQuery",
+        "title": "set a query"
+      },
+      {
+        "command": "curl-call-sticker.deleteQuery",
+        "title": "delete"
+      },
+
+
+      {
+        "command": "curl-call-sticker.editQuery",
+        "title": "edit"
+      },
+      {
+        "command": "curl-call-sticker.updateQuery",
+        "title": "save"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "curl-call-sticker.createQuery",
+          "when": "false"
+        }
+      ],
+      "comments/commentThread/context": [
+        {
+          "command": "curl-call-sticker.createQuery",
+          "group": "inline",
+          "when": "commentController == curlCommentController && commentThreadIsEmpty"
+        }
+      ],
+      "comments/comment/title": [
+        {
+          "command": "curl-call-sticker.deleteQuery",
+          "group": "inline@1",
+          "when": "commentController == curlCommentController"
+        }
+      ],
+      "comments/comment/context": [
+        {
+          "command":"curl-call-sticker.updateQuery",
+          "group": "inline@1",
+          "when": "commentController == curlCommentController"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.79.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3",
+    "@vscode/test-electron": "^2.3.2"
+  }
+}
